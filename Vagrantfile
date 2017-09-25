@@ -78,7 +78,7 @@ Vagrant.configure("2") do |config|
 
     if rebuild_hadoop == 'true'
 
-      hadoop.vm.box = "takabayashi/marvin-platform-core"
+      hadoop.vm.box = "marvin-ai/marvin-platform-core"
       hadoop.vm.box_version = CORE_BOX_VERSION
       
       # copy file
@@ -107,7 +107,7 @@ Vagrant.configure("2") do |config|
       hadoop.vm.provision "clean", type: "shell", path: "provision/clean.sh"
 
     else
-      hadoop.vm.box = "takabayashi/marvin-platform-hadoop"
+      hadoop.vm.box = "marvin-ai/marvin-platform-hadoop"
       hadoop.vm.box_version = HADOOP_BOX_VERSION
     end
 
@@ -140,7 +140,7 @@ Vagrant.configure("2") do |config|
 
     if rebuild_dev == 'true'
 
-      dev.vm.box = "takabayashi/marvin-platform-core"
+      dev.vm.box = "marvin-ai/marvin-platform-core"
       dev.vm.box_version = CORE_BOX_VERSION
       
       dev.vm.provision :shell, :inline => "apt-get install -y build-essential liblapack-dev libblas-dev libjpeg8-dev graphviz libsasl2-dev"
