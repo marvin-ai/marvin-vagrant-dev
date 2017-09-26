@@ -184,7 +184,7 @@ Vagrant.configure("2") do |config|
       dev.vm.provision "clean", type: "shell", path: "provision/clean.sh"
 
     else
-      dev.vm.box = "takabayashi/marvin-platform-dev"
+      dev.vm.box = "marvin-ai/marvin-platform-dev"
       dev.vm.box_version = DEV_BOX_VERSION
     end
 
