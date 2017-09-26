@@ -30,5 +30,16 @@ vagrant ssh hadoop
 # follow interactive configuration script
 ```
 
-The projects will be on your home folder
+The marvin source projects will be on your home folder, to compile and use the marvin toolbox type:
 
+
+```
+# firt steps
+
+workon python-toolbox-env
+
+make marvin
+
+marvin --help
+
+'''
