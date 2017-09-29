@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
   # --------------------------------------------
   # Hadoop Ecosystem Machine Definition
   # --------------------------------------------
-  config.vm.define "hadoop" do |hadoop|
+  config.vm.define "hadoop", autostart: false do |hadoop|
 
     hadoop.vm.network :private_network, ip: "10.0.0.11"
     hadoop.vm.hostname = "marvin-hadoop"
@@ -172,7 +172,7 @@ Vagrant.configure("2") do |config|
       dev.vm.provision "r", type: "shell", path: "provision/R.sh"
 
       # Marvin Data
-      dev.vm.provision "marvin_data", type: "shell", path: "provision/marvin_data.sh"
+      dev.vm.provision "marvin_data", type: "shell", path: "provision/marvin.sh"
 
       # Prepare first time
       dev.vm.provision "prepare", type: "shell", path: "provision/prepare_first_time.sh"
