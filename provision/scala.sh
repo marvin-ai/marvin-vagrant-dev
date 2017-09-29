@@ -23,3 +23,7 @@ cd /tmp
 sudo wget www.scala-lang.org/files/archive/scala-2.11.9.deb
 sudo dpkg -i scala-2.11.9.deb
 scala -version
+
+curl -Ls https://git.io/sbt > sbt
+sudo mv sbt /usr/local/bin/sbt
+sudo chmod 0755 /usr/local/bin/sbt
