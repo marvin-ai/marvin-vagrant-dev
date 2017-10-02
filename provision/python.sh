@@ -27,9 +27,5 @@ sudo apt-get install -y python-tk
 
 pip install virtualenvwrapper
 
-cat <<EOL >>/home/vagrant/.bashrc
-
-export WORKON_HOME=/home/vagrant/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-
-EOL
+echo "export WORKON_HOME=/home/vagrant/.virtualenvs" >> /home/vagrant/.profile
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/vagrant/.profile

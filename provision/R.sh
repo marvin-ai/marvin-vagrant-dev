@@ -21,7 +21,7 @@ echo '----------------------------------------------'
 echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" | sudo tee -a /etc/apt/sources.list.d/sbt.list
 gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
 gpg -a --export E084DAB9 | sudo apt-key add -
-sudo apt-get update
+sudo apt-get -qq update
 sudo apt-get install -y r-base
 
 sudo apt-get -y install libcurl4-gnutls-dev libxml2-dev libssl-dev
@@ -34,6 +34,6 @@ sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com
 
 # R-Studio Server Instalation
 cd /tmp
-curl https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb -o rstudio-server-1.0.136-amd64.deb
+wget https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
 sudo dpkg -i rstudio-server-1.0.136-amd64.deb
 cd ~

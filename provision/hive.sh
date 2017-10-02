@@ -24,7 +24,7 @@ sudo wget 'https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/cloudera.li
 sudo wget https://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-repository_1.0_all.deb
 sudo dpkg -i cdh5-repository_1.0_all.deb
 
-sudo apt-get update
+sudo apt-get -qq update
 
 sudo apt-get install -y hive
 sudo apt-get install -y hive-metastore

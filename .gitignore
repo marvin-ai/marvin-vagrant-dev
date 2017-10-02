@@ -1,2 +1,3 @@
 .vagrant
 projects/*
+.DS_Store
