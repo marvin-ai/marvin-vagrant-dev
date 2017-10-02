@@ -44,3 +44,6 @@ and have fun :-)
 vagrant up hadoop
 vagrant ssh hadoop
 ```
+
+
+> Marvin is a project started at B2W Digital offices and released open source on September 2017.
