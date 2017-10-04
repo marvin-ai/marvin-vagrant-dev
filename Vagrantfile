@@ -112,17 +112,17 @@ Vagrant.configure("2") do |config|
     end
 
     # Hadoop ports
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 50070, host: 50070 # UI NameNode
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 50030, host: 50030 # UI JobTracker
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 50060, host: 50060 # UI TaskTracker
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8088, host: 8088 # Hadoop Aplications
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8042, host: 8042 # Hadoop X
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 10000, host: 10000 # Hive
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8020, host: 8020 # HDFS
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 7077, host: 7077 # Spark Master Server
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8080, host: 8080 # Spark Web UI
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 4040, host: 4040 # Spark Context Web UI
-    hadoop.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 19888, host: 19888 # Hadoop Logs
+    hadoop.vm.network "forwarded_port", guest: 50070, host: 50070 # UI NameNode
+    hadoop.vm.network "forwarded_port", guest: 50030, host: 50030 # UI JobTracker
+    hadoop.vm.network "forwarded_port", guest: 50060, host: 50060 # UI TaskTracker
+    hadoop.vm.network "forwarded_port", guest: 8088, host: 8088 # Hadoop Aplications
+    hadoop.vm.network "forwarded_port", guest: 8042, host: 8042 # Hadoop X
+    hadoop.vm.network "forwarded_port", guest: 10000, host: 10000 # Hive
+    hadoop.vm.network "forwarded_port", guest: 8020, host: 8020 # HDFS
+    hadoop.vm.network "forwarded_port", guest: 7077, host: 7077 # Spark Master Server
+    hadoop.vm.network "forwarded_port", guest: 8080, host: 8080 # Spark Web UI
+    hadoop.vm.network "forwarded_port", guest: 4040, host: 4040 # Spark Context Web UI
+    hadoop.vm.network "forwarded_port", guest: 19888, host: 19888 # Hadoop Logs
   end
 
 
@@ -204,11 +204,10 @@ Vagrant.configure("2") do |config|
     dev.vm.network :forwarded_port, guest: 8000, host: 8000, host_ip:"127.0.0.1"
 
     # Engine Server
-    dev.vm.network :forwarded_port, guest: 50051, host: 50051, host_ip:"127.0.0.1"
-    dev.vm.network :forwarded_port, guest: 50052, host: 50052, host_ip:"127.0.0.1"
-    dev.vm.network :forwarded_port, guest: 50053, host: 50053, host_ip:"127.0.0.1"
-    dev.vm.network :forwarded_port, guest: 50054, host: 50054, host_ip:"127.0.0.1"
-    dev.vm.network :forwarded_port, guest: 50055, host: 50055, host_ip:"127.0.0.1"
-
+    dev.vm.network :forwarded_port, guest: 50051, host: 50051, host_ip:"0.0.0.0"
+    dev.vm.network :forwarded_port, guest: 50052, host: 50052, host_ip:"0.0.0.0"
+    dev.vm.network :forwarded_port, guest: 50053, host: 50053, host_ip:"0.0.0.0"
+    dev.vm.network :forwarded_port, guest: 50054, host: 50054, host_ip:"0.0.0.0"
+    dev.vm.network :forwarded_port, guest: 50055, host: 50055, host_ip:"0.0.0.0"
   end
 end
