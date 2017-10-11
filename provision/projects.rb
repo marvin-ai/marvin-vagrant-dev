@@ -22,7 +22,6 @@ require 'fileutils'
 puts 'Cloning marvin source repositories if necessary...'
 
 [
-  {name: 'python-common-lib', group: 'marvin', url: 'https://github.com/marvin-ai/marvin-python-common-lib.git'},
   {name: 'python-toolbox', group: 'marvin', url: 'https://github.com/marvin-ai/marvin-python-toolbox.git'},
   {name: 'engine-executor', group: 'marvin', url: 'https://github.com/marvin-ai/marvin-engine-executor.git'}
   # {name: 'simple-product-classification-engine', group: 'samples', url: ''}
