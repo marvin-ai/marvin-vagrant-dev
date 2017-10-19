@@ -172,7 +172,7 @@ Vagrant.configure("2") do |config|
       dev.vm.provision "r", type: "shell", path: "provision/R.sh"
 
       # Marvin Data
-      dev.vm.provision "marvin_data", type: "shell", path: "provision/marvin.sh"
+      dev.vm.provision "marvin_data", type: "shell", path: "provision/marvin_env.sh"
 
       # Prepare first time
       dev.vm.provision "prepare", type: "shell", path: "provision/prepare_first_time.sh"
