@@ -15,8 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-HADOOP_BOX_VERSION="0.0.1"
-DEV_BOX_VERSION="0.0.1"
+HADOOP_BOX_VERSION="0.0.2"
+DEV_BOX_VERSION="0.0.2"
 CORE_BOX_VERSION="0.0.2"
 UBUNTU_BOX_VERSION="20171030.0.0"
 
