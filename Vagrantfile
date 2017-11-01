@@ -17,8 +17,8 @@
 
 HADOOP_BOX_VERSION="0.0.1"
 DEV_BOX_VERSION="0.0.1"
-CORE_BOX_VERSION="0.0.1"
-UBUNTU_BOX_VERSION="20170811.0.1"
+CORE_BOX_VERSION="0.0.2"
+UBUNTU_BOX_VERSION="20171030.0.0"
 
 #------------------------Handling with envs
 rebuild_core=(ENV['REBUILD_CORE'] || 'false').downcase
