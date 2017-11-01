@@ -18,11 +18,11 @@ echo '----------------------------------------------'
 echo ' INSTALLING MYSQL For Hive MetaStore'
 echo '----------------------------------------------'
 
-
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password vagrant'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password vagrant'
-sudo apt-get install -y mysql-server-5.6
-sudo apt-get install -y libmysql-java
+
+sudo apt-get -qy install mysql-server-5.6 > /dev/null 2>&1
+sudo apt-get -qy install libmysql-java > /dev/null 2>&1
 
 echo "Setting mysql metastore database ..."
 cd /usr/lib/hive/scripts/metastore/upgrade/mysql/

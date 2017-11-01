@@ -19,8 +19,9 @@ echo ' INSTALLING SPARK'
 echo '----------------------------------------------'
 
 cd /tmp
-wget http://mirror.nbtelecom.com.br/apache/spark/spark-2.1.1/spark-2.1.1-bin-hadoop2.6.tgz
-tar -xvf spark-2.1.1-bin-hadoop2.6.tgz
+echo "Getting spark binaries..."
+wget http://archive.apache.org/dist/spark/spark-2.1.1/spark-2.1.1-bin-hadoop2.6.tgz -q
+tar -xf spark-2.1.1-bin-hadoop2.6.tgz
 sudo mv -f spark-2.1.1-bin-hadoop2.6 /opt/spark
 
 cp -f /tmp/hadoop-files/yarn-site.xml /opt/spark/conf/yarn-site.xml

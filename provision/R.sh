@@ -22,18 +22,18 @@ echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" | sudo tee -a /etc/a
 gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
 gpg -a --export E084DAB9 | sudo apt-key add -
 sudo apt-get -qq update
-sudo apt-get install -y r-base
+sudo apt-get -qy install r-base > /dev/null 2>&1
 
-sudo apt-get -y install libcurl4-gnutls-dev libxml2-dev libssl-dev
+sudo apt-get -qy install libcurl4-gnutls-dev libxml2-dev libssl-dev > /dev/null 2>&1
 
 # some packages installations
-sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/', quiet = TRUE)\""
 
 # install R packages from github
 # sudo su - -c "R -e \"devtools::install_github('daattali/shinyjs')\""
 
 # R-Studio Server Instalation
 cd /tmp
-wget https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
-sudo dpkg -i rstudio-server-1.0.136-amd64.deb
+wget -q https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
+sudo dpkg -i rstudio-server-1.0.136-amd64.deb 2> /dev/null
 cd ~

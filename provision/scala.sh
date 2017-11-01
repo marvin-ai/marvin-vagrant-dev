@@ -20,7 +20,7 @@ echo '----------------------------------------------'
 
 cd /tmp
 
-sudo wget www.scala-lang.org/files/archive/scala-2.11.9.deb
+sudo wget www.scala-lang.org/files/archive/scala-2.11.9.deb -q
 sudo dpkg -i scala-2.11.9.deb
 scala -version
 
