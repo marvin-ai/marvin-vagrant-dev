@@ -36,6 +36,8 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--cpus", 2]
   end
 
+  config.ssh.password = "vagrant"
+
   # --------------------------------------------
   # Core Machine Definition
   # --------------------------------------------
