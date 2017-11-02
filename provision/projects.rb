@@ -50,7 +50,7 @@ puts 'Cloning marvin source repositories if necessary...'
 
   if project != "public-engines"
     puts "Creating virtualenv #{project_hash[:name]}-env..."
-    system "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv -a ~/#{project} #{project_hash[:name]}-env &> /dev/null && cd ~/#{project} && setvirtualenvproject'"
+    puts "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv -a ~/#{project} #{project_hash[:name]}-env &> /dev/null && cd ~/#{project} && setvirtualenvproject'"
   end
 
   puts "\n"

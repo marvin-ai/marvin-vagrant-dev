@@ -25,7 +25,7 @@ sudo apt-get -qy install libxml2-dev libxslt1-dev
 sudo apt-get -qy install libpng12-dev libfreetype6-dev
 sudo apt-get -qy install python-tk
 
-pip install -q virtualenvwrapper
+pip install virtualenvwrapper
 
 echo 'export WORKON_HOME=/home/vagrant/.virtualenvs' >> /home/vagrant/.profile
 echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /home/vagrant/.profile
