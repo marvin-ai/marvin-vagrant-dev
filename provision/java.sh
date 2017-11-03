@@ -24,5 +24,6 @@ sudo apt-get -qq update
 echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
 echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 
-sudo apt-get install oracle-java8-installer -y
+sudo apt-get -qy install oracle-java8-installer
+sudo apt-get -qy install oracle-java8-set-default
 

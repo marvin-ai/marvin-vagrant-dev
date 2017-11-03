@@ -18,7 +18,7 @@ echo '----------------------------------------------'
 echo ' UPDATING GIT'
 echo '----------------------------------------------'
 
-sudo apt-get install -y git
+sudo apt-get -qy install git > /dev/null 2>&1
 
 git config --global color.ui true
 

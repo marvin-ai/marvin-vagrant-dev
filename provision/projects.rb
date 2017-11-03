@@ -23,8 +23,8 @@ puts 'Cloning marvin source repositories if necessary...'
 
 [
   {name: 'python-toolbox', group: 'marvin', url: 'https://github.com/marvin-ai/marvin-python-toolbox.git'},
-  {name: 'engine-executor', group: 'marvin', url: 'https://github.com/marvin-ai/marvin-engine-executor.git'}
-  # {name: 'simple-product-classification-engine', group: 'samples', url: ''}
+  {name: 'engine-executor', group: 'marvin', url: 'https://github.com/marvin-ai/marvin-engine-executor.git'},
+  {name: 'public-engines', url: 'https://github.com/marvin-ai/public-marvin-engines.git'}
 ].each do |project_hash|
 
   if project_hash[:group]
@@ -35,18 +35,26 @@ puts 'Cloning marvin source repositories if necessary...'
   end
 
   if File.directory?("/vagrant/projects/#{project}")
-    puts "Repository #{project} already cloned!"
+    puts "\nRepository #{project} already cloned!"
   else
-    puts "cloning #{project}..."
+    puts "\ncloning #{project}..."
+    
     begin
       Git.clone(project_hash[:url], "/vagrant/projects/#{project}")
     rescue
-      puts "error cloning #{project}!"
+      puts "\nerror cloning #{project}!"
     end
   end
 
   system "ln -sfv /vagrant/projects/#{project} ~/#{project}"
-  puts "Creating virtualenv #{project_hash[:name]}-env..."
-  system "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv -a ~/#{project} #{project_hash[:name]}-env &> /dev/null && cd ~/#{project} && setvirtualenvproject'"
+  system "sudo chown -R vagrant:vagrant /home/vagrant/.virtualenvs"
+
+  if project != "public-engines"
+    puts "Creating virtualenv #{project_hash[:name]}-env..."
+    puts "sudo chown -R vagrant /home/vagrant/.virtualenvs" 
+    puts "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv -a ~/#{project} #{project_hash[:name]}-env &> /dev/null && cd ~/#{project} && setvirtualenvproject'"
+    system "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv -a ~/#{project} #{project_hash[:name]}-env &> /dev/null && cd ~/#{project} && setvirtualenvproject'"
+  end
+
   puts "\n"
 end

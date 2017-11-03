@@ -15,8 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-HADOOP_BOX_VERSION="0.0.1"
-DEV_BOX_VERSION="0.0.1"
+HADOOP_BOX_VERSION="0.0.2"
+DEV_BOX_VERSION="0.0.2"
 CORE_BOX_VERSION="0.0.2"
 UBUNTU_BOX_VERSION="20171030.0.0"
 
@@ -35,6 +35,8 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     vb.customize ["modifyvm", :id, "--cpus", 2]
   end
+
+  config.ssh.password = "vagrant"
 
   # --------------------------------------------
   # Core Machine Definition
@@ -100,9 +102,6 @@ Vagrant.configure("2") do |config|
       # spark provision
       hadoop.vm.provision "spark", type: "shell", path: "provision/spark.sh"
 
-      # general hdfs permissions
-      hadoop.vm.provision :shell, :inline => "sudo -u hdfs hadoop fs -chmod -R 777 /tmp"
-
       # clean
       hadoop.vm.provision "clean", type: "shell", path: "provision/clean.sh"
 
@@ -143,7 +142,7 @@ Vagrant.configure("2") do |config|
       dev.vm.box = "marvin-ai/marvin-platform-core"
       dev.vm.box_version = CORE_BOX_VERSION
       
-      dev.vm.provision :shell, :inline => "apt-get install -y build-essential liblapack-dev libblas-dev libjpeg8-dev graphviz libsasl2-dev"
+      dev.vm.provision :shell, :inline => "apt-get -qy install build-essential liblapack-dev libblas-dev libjpeg8-dev graphviz libsasl2-dev"
 
       # copy file
       dev.vm.provision "hadoopfile", type:"file", source: "provision/general_files", destination: "/tmp/hadoop-files"
@@ -172,7 +171,7 @@ Vagrant.configure("2") do |config|
       dev.vm.provision "r", type: "shell", path: "provision/R.sh"
 
       # Marvin Data
-      dev.vm.provision "marvin_data", type: "shell", path: "provision/marvin_env.sh"
+      dev.vm.provision "marvinenv", type: "shell", path: "provision/marvin_env.sh"
 
       # Prepare first time
       dev.vm.provision "prepare", type: "shell", path: "provision/prepare_first_time.sh"

@@ -20,7 +20,7 @@ echo '----------------------------------------------'
 
 source /usr/local/rvm/scripts/rvm
 
-rvm use --install $1
+rvm use --install --quiet-curl $1
 
 shift
 

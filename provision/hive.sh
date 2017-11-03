@@ -18,17 +18,9 @@ echo '----------------------------------------------'
 echo ' INSTALLING HIVE'
 echo '----------------------------------------------'
 
-sudo wget https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/archive.key -O archive.key | sudo apt-key add -
-sudo wget 'https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/cloudera.list' \ -O /etc/apt/sources.list.d/cloudera.list
-
-sudo wget https://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-repository_1.0_all.deb
-sudo dpkg -i cdh5-repository_1.0_all.deb
-
-sudo apt-get -qq update
-
-sudo apt-get install -y hive
-sudo apt-get install -y hive-metastore
-sudo apt-get install -y hive-server2
+sudo apt-get -qy install hive > /dev/null 2>&1
+sudo apt-get -qy install hive-metastore > /dev/null 2>&1
+sudo apt-get -qy install hive-server2 > /dev/null 2>&1
 
 sudo update-rc.d hive-metastore defaults
 sudo update-rc.d hive-server2 defaults
