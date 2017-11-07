@@ -62,7 +62,12 @@ Vagrant.configure("2") do |config|
 
       # clean
       core.vm.provision "clean", type: "shell", path: "provision/clean.sh"
+    
+    else
+      core.vm.box = "marvin-ai/marvin-platform-core"
+      core.vm.box_version = CORE_BOX_VERSION
     end
+
   end
 
   
