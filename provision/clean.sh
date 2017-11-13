@@ -18,7 +18,6 @@ echo '----------------------------------------------'
 echo ' CLEANNING BOX '
 echo '----------------------------------------------'
 
-sudo find $HOME/ -not -name '.*' -print0 | xargs -0 rm -rf --
 sudo apt-get clean -y
 sudo apt-get autoremove --purge -y
 sudo apt-get purge --auto-remove juju-core -y
