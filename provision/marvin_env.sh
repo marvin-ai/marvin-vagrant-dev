@@ -20,3 +20,5 @@ echo '----------------------------------------------'
 
 echo "export MARVIN_DATA_PATH=/vagrant/projects/data" >> /home/vagrant/.profile
 echo "export MARVIN_HOME=/vagrant/projects" >> /home/vagrant/.profile
+
+sudo -u vagrant bash -c "source /home/vagrant/.profile"
