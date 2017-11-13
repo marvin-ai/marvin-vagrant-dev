@@ -25,50 +25,40 @@ echo '----------------------------------------------'
 #
 #####
 
-echo "Updating system with hadoop stuffs..."
-
 sudo wget -qO - http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key | sudo apt-key add -
 sudo wget -qO /etc/apt/sources.list.d/cloudera-manager.list https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list
 
-sudo wget -q https://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-repository_1.0_all.deb
+sudo wget https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/archive.key -O archive.key | sudo apt-key add -
+sudo wget 'https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/cloudera.list' \ -O /etc/apt/sources.list.d/cloudera.list
+
+sudo wget https://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-repository_1.0_all.deb
 sudo dpkg -i cdh5-repository_1.0_all.deb
 
 sudo apt-get -qq update
 
-echo "Installing jdk ..."
-sudo apt-get -qy install oracle-j2sdk1.7 > /dev/null 2>&1
+sudo apt-get install -qy oracle-j2sdk1.7
 
-echo "Installing hadoop ..."
-sudo apt-get -qy install hadoop-conf-pseudo > /dev/null 2>&1
+sudo apt-get install -qy hadoop-conf-pseudo
+
 sudo dpkg -L hadoop-conf-pseudo
 
-sudo update-rc.d hadoop-mapreduce-historyserver disable
-sudo update-rc.d hadoop-hdfs-secondarynamenode disable
+sudo -u hdfs hdfs namenode -format
+sudo /usr/lib/hadoop/libexec/init-hdfs.sh
 
-echo "Copying hadoop files ..."
 cp -f /tmp/hadoop-files/yarn-site.xml /etc/hadoop/conf/yarn-site.xml
 cp -f /tmp/hadoop-files/hdfs-site.xml /etc/hadoop/conf/hdfs-site.xml
 cp -f /tmp/hadoop-files/core-site.xml /etc/hadoop/conf/core-site.xml
 cp -f /tmp/hadoop-files/mapred-site.xml /etc/hadoop/conf/mapred-site.xml
 
-echo "Format hdfs namenode ..."
-sudo -u hdfs hdfs namenode -format
-for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done
+sudo -u hdfs hadoop fs -mkdir /user/$USER
+sudo -u hdfs hadoop fs -chown $USER /user/$USER
 
-sudo /usr/lib/hadoop/libexec/init-hdfs.sh
-
-sudo -u hdfs hadoop fs -mkdir /user/vagrant
-sudo -u hdfs hadoop fs -chown vagrant /user/vagrant
 sudo -u hdfs hadoop fs -chmod -R 777 /tmp
 
-echo "Stoping hadoop process ..."
-for x in `cd /etc/init.d ; ls hadoop-*` ; do sudo service $x stop ; done
+sudo update-rc.d hadoop-mapreduce-historyserver disable
+sudo update-rc.d hadoop-hdfs-secondarynamenode disable
 
-echo "Starting hadoop process ..."
-sudo service hadoop-hdfs-datanode start
-sudo service hadoop-hdfs-namenode start
-sudo service hadoop-yarn-resourcemanager start
-sudo service hadoop-yarn-nodemanager start
+for x in `cd /etc/init.d ; ls hadoop-*` ; do sudo service $x restart ; done
 
 hadoop version
 
