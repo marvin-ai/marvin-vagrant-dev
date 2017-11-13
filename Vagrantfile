@@ -65,7 +65,6 @@ Vagrant.configure("2") do |config|
       core.vm.box = "marvin-ai/marvin-platform-core"
       core.vm.box_version = CORE_BOX_VERSION
     end
-
   end
 
   
@@ -181,9 +180,6 @@ Vagrant.configure("2") do |config|
 
       # spark client
       dev.vm.provision "spark", type: "shell", path: "provision/spark.sh"
-
-      # virtual env permissions
-      dev.vm.provision "venv_p", type: "shell", :inline => "chown -R vagrant:vagrant /home/vagrant/.virtualenvs"
 
       # clean
       dev.vm.provision "clean", type: "shell", path: "provision/clean.sh"
