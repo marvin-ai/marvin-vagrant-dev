@@ -47,12 +47,9 @@ puts 'Cloning marvin source repositories if necessary...'
   end
 
   system "ln -sfv /vagrant/projects/#{project} ~/#{project}"
-  system "sudo chown -R vagrant:vagrant /home/vagrant/.virtualenvs"
 
   if project != "public-engines"
     puts "Creating virtualenv #{project_hash[:name]}-env..."
-    puts "sudo chown -R vagrant /home/vagrant/.virtualenvs" 
-    puts "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv -a ~/#{project} #{project_hash[:name]}-env &> /dev/null && cd ~/#{project} && setvirtualenvproject'"
     system "bash -c 'source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv -a ~/#{project} #{project_hash[:name]}-env &> /dev/null && cd ~/#{project} && setvirtualenvproject'"
   end
 

@@ -15,15 +15,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-HADOOP_BOX_VERSION="0.0.2"
-DEV_BOX_VERSION="0.0.2"
-CORE_BOX_VERSION="0.0.2"
-UBUNTU_BOX_VERSION="20171030.0.0"
+HADOOP_BOX_VERSION="0.0.3"
+DEV_BOX_VERSION="0.0.3"
+CORE_BOX_VERSION="0.0.3"
+UBUNTU_BOX_VERSION="20171106.0.0"
 
 #------------------------Handling with envs
-rebuild_core=(ENV['REBUILD_CORE'] || 'false').downcase
-rebuild_dev=(ENV['REBUILD_DEV'] || 'false').downcase
-rebuild_hadoop=(ENV['REBUILD_HADOOP'] || 'false').downcase
+rebuild=(ENV['REBUILD'] || 'false').downcase
 #-------------------------------------------------
 
 Vagrant.require_version ">= 1.9.2"
@@ -36,7 +34,7 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--cpus", 2]
   end
 
-  config.ssh.password = "vagrant"
+  config.ssh.insert_key = false
 
   # --------------------------------------------
   # Core Machine Definition
@@ -47,7 +45,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
 
-    if rebuild_core == 'true'
+    if rebuild == 'true'
       core.vm.box = "ubuntu/trusty64"
       core.vm.box_version = UBUNTU_BOX_VERSION
 
@@ -62,6 +60,10 @@ Vagrant.configure("2") do |config|
 
       # clean
       core.vm.provision "clean", type: "shell", path: "provision/clean.sh"
+
+    else
+      core.vm.box = "marvin-ai/marvin-platform-core"
+      core.vm.box_version = CORE_BOX_VERSION
     end
   end
 
@@ -78,7 +80,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--memory", 5120]
     end
 
-    if rebuild_hadoop == 'true'
+    if rebuild == 'true'
 
       hadoop.vm.box = "marvin-ai/marvin-platform-core"
       hadoop.vm.box_version = CORE_BOX_VERSION
@@ -104,7 +106,7 @@ Vagrant.configure("2") do |config|
 
       # clean
       hadoop.vm.provision "clean", type: "shell", path: "provision/clean.sh"
-
+  
     else
       hadoop.vm.box = "marvin-ai/marvin-platform-hadoop"
       hadoop.vm.box_version = HADOOP_BOX_VERSION
@@ -137,7 +139,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--memory", 2048]
     end
 
-    if rebuild_dev == 'true'
+    if rebuild == 'true'
 
       dev.vm.box = "marvin-ai/marvin-platform-core"
       dev.vm.box_version = CORE_BOX_VERSION

@@ -36,4 +36,5 @@ sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com
 cd /tmp
 wget -q https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
 sudo dpkg -i rstudio-server-1.0.136-amd64.deb 2> /dev/null
+sudo rm -f rstudio-server-1.0.136-amd64.deb
 cd ~
